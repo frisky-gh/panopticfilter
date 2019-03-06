@@ -10,110 +10,72 @@ PanopticFilter is a anomaly log monitoring tool, designed as Fluentd out_exec fi
 
 ## SYNOPSIS
 
-`panopticfilter <SUBCOMMAND> [OPTIONS]
+`panopticfilter <SUBCOMMAND> [OPTIONS]`
 
 SUBCOMMAND is one of following:
-  * build
-      Build a pattern file by specified rules from sample logs.
-  * run
-      Monitor anomaly logs from STDIN plain text.
-  * filter
-      Monitor anomaly logs from STDIN JSON text.
-  * strip
-      Strip redundant sample logs from STDIN plain text.
-  * multiline2singleline
-      Transform multi-line logs to single-line logs.
-  * json2text
-  * version
+<dl>
+<dt> build
+<dd>  Build a pattern file by specified rules from sample logs.
+<dt> run
+<dd>  Monitor anomaly logs from STDIN plain text.
+<dt> filter
+<dd>  Monitor anomaly logs from STDIN JSON text.
+<dt> strip
+<dd>  Strip redundant sample logs from STDIN plain text.
+<dt> multiline2singleline
+<dd>  Transform multi-line logs to single-line logs.
+<dt> json2text
+<dt> version
+</dl>
 
 ## Description
 
 
 
 ## "build" Subcommand Options
-  * -r FILE
-     rule file
-  * -o FILE
-     output pettern file
-  * -s FILE
-     input sample log file. You can specify multiple files.
-  * -d FILE
-     (optional) output diagnosis file
-  * -e NAME
-     (optional) event name. Default: 50WELKNOWN
+
+<dl>
+<dt> -r FILE
+<dd>  rule file
+<dt> -o FILE
+<dd>  output pettern file
+<dt> -s FILE
+<dd>  input sample log file. You can specify multiple files.
+<dt> -d FILE
+<dd>  (optional) output diagnosis file
+<dt> -e NAME
+<dd>  (optional) event name. Default: 50WELKNOWN
+</dl>
 
 ## "run" Subcommand Options
-  * -p FILE
-     pettern file
+<dl>
+<dt> -p FILE
+<dd>  pettern file
+</dl>
 
 ## "filter" Subcommand Options
-  * -p FILE
-     pettern file
-  * -e 's/x/y/'
-     tag replacement rule.
-  * -o FILE
-     (optional) output anomaly log file
+<dl>
+<dt> -p FILE
+<dd>  pettern file
+<dt> -e 's/x/y/'
+<dd>  tag replacement rule.
+<dt> -o FILE
+<dd>  (optional) output anomaly log file
+</dl>
 
 ## "strip" Subcommand Options
-  * -r FILE
-     rule file
-  * -p FILE
-     (optional) pettern file
+<dl>
+<dt> -r FILE
+<dd>  rule file
+<dt> -p FILE
+<dd>  (optional) pettern file
+</dl>
 
 ## "multiline2singleline" Subcommand Options
-  * --firstline REGEXP
-
-## Install
-
-1. clone or unzip.
-
-```
-    % git clone https://github.com/frisky-gh/panopticd.git
-```
-
-2. setup rsyslog, syslog-ng or other logger to output logs
-   into ./panopticd/spool/targetlog/ .
-
-```
-    ex) rsyslog.conf
-    $FileCreateMode 0644
-    $template SyslogDaily,"/home/frisky/panopticd/spool/targetlog/syslog_%$year%-%$month%-%$day%"
-    *.* ?SyslogDaily
-```
-
-3. complete.
-
-## Usage
-
-1. copy well-known syslogs to ./panopticd/conf/pattern/ as sample.
-
-```
-    % cp ./syslog.1 ./panopticd/conf/pattern/syslog-wellknown.samplelog
-```
-
-2. build patterns and patternsets from sample logs.
-
-```
-    % ./panopticd/bin/panopticctl build
-```
-
-3. copy conf files from examples and configurate it.
-
-```
-    % cd ./panopticd/conf
-    % cp delivery.conf.example delivery.conf
-    % vi delivery.conf
-    % cp generate_pattern.conf.example generate_pattern.conf
-    % vi generate_pattern.conf
-    (continue...)
-```
-
-4. startup panopticd.
-
-```
-    % ./panopticd/bin/panopticd start
-```
-
+<dl>
+<dt> --firstline REGEXP
+</dl>
+ 
 ## Licence
 
 [MIT](https://github.com/frisky-gh/panopticfilter/blob/master/LICENSE)
